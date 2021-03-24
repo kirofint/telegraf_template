@@ -1,4 +1,4 @@
-# Step-by-step guide for installing and running the bot locally
+# Step-by-step guide for install and run the bot locally
 
 ## 1. Clone this repository
 ```
