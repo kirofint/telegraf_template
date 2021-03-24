@@ -1,4 +1,4 @@
-# Telegram bot template installation
+# Step-by-step guide for installing and running the bot locally
 
 ## 1. Clone this repository
 ```
