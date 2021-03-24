@@ -2,7 +2,7 @@
 
 ## 1. Clone this repository
 ```
-git clone https://github.com/kirofint/telegraf-template
+git clone https://github.com/kirofint/telegraf_template
 ```
 ## 2. Launch [mongo db](https://www.mongodb.com/)
 ## 3. Create `.env` and fill in your `environment variables`
