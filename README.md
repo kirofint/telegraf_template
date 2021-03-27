@@ -18,4 +18,4 @@ yarn serve
 # Environment variables
 
 - `TOKEN` — Telegram bot token
-- `MONGO`— URL of the mongo database
+- `MONGO` — URL of the mongo database
