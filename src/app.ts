@@ -7,5 +7,4 @@ import commandGreeting from './commands/greeting'
 // Commands
 commandGreeting(bot)
 
-bot.catch(errLogger)
 bot.launch()
