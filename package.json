@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@typegoose/typegoose": "^7.6.0",
-    "@types/mongoose": "^5.10.4",
-    "@types/node": "^14.14.35",
     "dotenv": "^8.2.0",
     "module-alias": "^2.2.2",
     "mongoose": "5.10.18",
-    "telegraf": "3.38.0",
-    "typescript": "^4.2.3"
+    "telegraf": "3.38.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.10.4",
+    "@types/node": "^14.14.37",
     "concurrently": "^6.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "typescript": "^4.2.4"
   },
   "_moduleAliases": {
     "@": "dist"
