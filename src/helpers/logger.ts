@@ -38,4 +38,4 @@ export default ({ stack }: Error): void => {
   errorsToReport.push(errLog)
 }
 
-ADMIN_ID && setInterval(sendLogToMessage, 6000)
+ADMIN_ID && setInterval(sendLogToMessage, 60 * 10000)
