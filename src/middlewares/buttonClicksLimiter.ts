@@ -15,7 +15,7 @@ export default (ctx: Context, next: () => any): void => {
       return next()
     }
       
-    ctx.answerCbQuery("You got a limitation because you made a lot of clicks", true)
+    ctx.answerCbQuery("You got a limitation because you made a lot of clicks", { show_alert: true })
 	} catch (err) {
     logger(err)
   }

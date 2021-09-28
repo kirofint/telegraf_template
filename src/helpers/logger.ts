@@ -39,7 +39,7 @@ function saveLogAsFile (log: string): void {
  * @param {Error}: stack: error store
  * @param {boolean}: saveAsFile: true - save as file without send to admin pm , false - give a choice to the handler
  */
-export default ({ stack }: Error, saveAsFile: boolean = false): void => {
+export default ({ stack }: Error, ctx?: any, saveAsFile: boolean = false): void => {
   if (!stack) return;
   // add datetime and new line
   const errLog = `[${new Date().toLocaleString()}] ${stack}\r\n`;

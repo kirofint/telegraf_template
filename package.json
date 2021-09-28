@@ -10,11 +10,11 @@
     "deploy": "yarn build-ts && yarn watch-js"
   },
   "dependencies": {
-    "@typegoose/typegoose": "7.6.0",
+    "@typegoose/typegoose": "^7.6.1",
     "dotenv": "^10.0.0",
     "module-alias": "^2.2.2",
     "mongoose": "5.10.18",
-    "telegraf": "3.38.0"
+    "telegraf": "^4.4.2"
   },
   "devDependencies": {
     "@types/mongoose": "^5.10.4",
