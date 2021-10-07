@@ -1,4 +1,5 @@
 import { Context } from 'telegraf'
+import logger from '@/helpers/logger'
 
 export function isAdmin (ctx: Context, next: () => any) {
 	if (ctx.from.id === Number.parseInt(process.env.ADMIN_ID)) return next()
@@ -23,4 +24,14 @@ export function isNotFromCandidate (ctx: Context, next?: () => any) {
 export async function skipCbQuery (ctx: Context, next: () => any) {
 	await ctx.answerCbQuery()
   return next()
+}
+
+export async function removeSelfMsg (ctx: Context, next?: () => any) {
+  try {
+    await ctx.deleteMessage()
+  } catch (error) {
+    return logger(error)
+  } finally {
+    return next && next()
+  }
 }

@@ -9,6 +9,7 @@ enum ReplyStatusList {
   Warning = 'warning',
   Success = 'success',
   Error = 'error',
+  Info = 'info',
 }
 
 const getMessageStatus = (status: string) => {
@@ -19,6 +20,8 @@ const getMessageStatus = (status: string) => {
       return '✅'
     case ReplyStatusList.Warning:
       return '⚠️'
+    case ReplyStatusList.Info:
+      return 'ℹ️'
     default:
       if (status?.length > 1)
         return `${status}`
@@ -26,15 +29,15 @@ const getMessageStatus = (status: string) => {
 }
 
 export default async (ctx: Context, next: () => void) => {
-  const userdata = await findOrCreateUser(ctx.from.id, ctx.from?.username)
-  ctx.dbuser = userdata
+  const userdata = await findOrCreateUser(ctx.from.id, ctx.from?.username, ctx.from.language_code)
+	ctx.dbuser = userdata
 
   ctx.replyWithMarkdownAndStatus = async (markdown, status, concatenate = true, extra = {}) => {
     const statusMessage = getMessageStatus(status)
     const message = concatenate ? `\`${markdown}\`` : markdown
     return await ctx.replyWithMarkdown(`*${statusMessage}*` + ' ' + message, { ...extra, parse_mode: 'MarkdownV2' })
   }
-  
+
   ctx.replyWithStatus = async (message, status, extra = {}) => {
     const statusMessage = getMessageStatus(status)
     return await ctx.reply(statusMessage + ' ' + message, extra)

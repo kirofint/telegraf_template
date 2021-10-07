@@ -1,11 +1,13 @@
 import { Context } from "telegraf"
 
-export default ({ session }: Context, next: () => void) => {
+export default (ctx: Context, next: () => void) => {
   // toggles, boolean, statics
-  session.states ??= {
-    buttonClicksCounter: 0,
-    buttonClicksCounterTimeout: null,
-  }
+	ctx.session ||= {
+		states: {
+			buttonClicksCounter: 0,
+			buttonClicksCounterTimeout: null,
+		},
+	}
 
   return next()
 }

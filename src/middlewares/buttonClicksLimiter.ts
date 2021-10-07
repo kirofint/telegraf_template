@@ -2,7 +2,7 @@ import { Context } from 'telegraf'
 import logger from '@/helpers/logger'
 
 export default (ctx: Context, next: () => any): void => {
-  try {
+	try {
     if (++ctx.session.states.buttonClicksCounter < 15) {
         ctx.session.states.buttonClicksCounterTimeout ||=
           setTimeout(() => {
@@ -14,7 +14,7 @@ export default (ctx: Context, next: () => any): void => {
           }, 25000)
       return next()
     }
-      
+
     ctx.answerCbQuery("You got a limitation because you made a lot of clicks", { show_alert: true })
 	} catch (err) {
     logger(err)

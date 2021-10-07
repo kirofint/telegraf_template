@@ -10,6 +10,7 @@
     "deploy": "yarn build-ts && yarn watch-js"
   },
   "dependencies": {
+    "@kirofint/telegraf-i18n": "^6.6.0",
     "@typegoose/typegoose": "^7.6.1",
     "dotenv": "^10.0.0",
     "module-alias": "^2.2.2",

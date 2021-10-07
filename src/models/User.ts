@@ -5,7 +5,9 @@ export class User {
   id: number
   @prop({ default: null })
   username: string
-  
+  @prop({ default: 'en' })
+  language: string
+
   _id?: string
 }
 
@@ -13,8 +15,8 @@ const UserModel = getModelForClass(User, {
   schemaOptions: { timestamps: true },
 })
 
-export async function findOrCreateUser (id: number, username: string | null): Promise<DocumentType<User>> {
-  return await UserModel.findOne({ id }).lean() ?? await new UserModel({ id, username }).save()
+export async function findOrCreateUser (id: number, username: string | null, language: string): Promise<DocumentType<User>> {
+  return await UserModel.findOne({ id }).lean() ?? await new UserModel({ id, username, language }).save()
 }
 
 export async function updateUser (user: User, changes_keys: Array<string>) {

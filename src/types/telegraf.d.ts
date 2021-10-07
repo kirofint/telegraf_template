@@ -1,6 +1,7 @@
 import { DocumentType } from '@typegoose/typegoose'
-import { User } from '@/models/User'
 import { ExtraReplyMessage } from 'telegraf/typings/telegram-types'
+import { I18nContext } from '@kirofint/telegraf-i18n'
+import { User } from '@/models/User'
 
 interface SessionData {
   states: {
@@ -9,8 +10,9 @@ interface SessionData {
   }
 }
 declare module 'telegraf' {
-  export class Context {
-    scene: any
+	export class Context {
+		scene: any
+		i18n: I18nContext
     session: SessionData
     dbuser: DocumentType<User>
     updateProperty: Function
