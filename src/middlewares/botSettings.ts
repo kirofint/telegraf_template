@@ -32,7 +32,7 @@ export default async (ctx: Context, next: () => void) => {
   const userdata = await findOrCreateUser(ctx.from.id, ctx.from?.username, ctx.from.language_code)
 	ctx.dbuser = userdata
 
-  ctx.replyWithMarkdownAndStatus = async (markdown, status, concatenate = true, extra = {}) => {
+  ctx.replyWithMarkdownAndStatus = async (markdown, status, concatenate = false, extra = {}) => {
     const statusMessage = getMessageStatus(status)
     const message = concatenate ? `\`${markdown}\`` : markdown
     return await ctx.replyWithMarkdown(`*${statusMessage}*` + ' ' + message, { ...extra, parse_mode: 'MarkdownV2' })

@@ -3,3 +3,5 @@ language_selected: "Engish has been selected"
 
 command_greeting: "Have a nice use the bot!"
 command_language: "To change bot language choice your language button"
+
+button_clicks_limitted_msg: "You got a limitation because you made a lot of clicks"

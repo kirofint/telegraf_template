@@ -3,7 +3,10 @@ import logger from '@/helpers/logger'
 
 export default (ctx: Context, next: () => any): void => {
 	try {
-    if (++ctx.session.states.buttonClicksCounter < 15) {
+		if (
+			ctx.session.states?.buttonClicksCounter
+			&& ++ctx.session.states.buttonClicksCounter < 15
+		) {
         ctx.session.states.buttonClicksCounterTimeout ||=
           setTimeout(() => {
             if (ctx.session.states) {
@@ -15,7 +18,7 @@ export default (ctx: Context, next: () => any): void => {
       return next()
     }
 
-    ctx.answerCbQuery("You got a limitation because you made a lot of clicks", { show_alert: true })
+    ctx.answerCbQuery(ctx.i18n.t('button_clicks_limitted_msg'), { show_alert: true })
 	} catch (err) {
     logger(err)
   }

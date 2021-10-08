@@ -4,6 +4,7 @@ import i18nSettings from './i18n'
 import botSettings from '@/middlewares/botSettings'
 import sessionSettings from '@/middlewares/sessionSettings'
 import messagesCollector from '@/helpers/messagesCollector'
+import commandIsOnline from '@/commands/isonline'
 import commandGreeting from '@/commands/greeting'
 import commandLanguage, { changeLanguageAction } from '@/commands/language'
 
@@ -20,6 +21,7 @@ if (languageList?.length > 1) {
 	commandLanguage(bot, languageList)
 }
 
+commandIsOnline(bot)
 commandGreeting(bot)
 
 messagesCollector(bot)

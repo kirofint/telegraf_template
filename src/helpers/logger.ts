@@ -15,13 +15,8 @@ async function sendLogToMessage (): Promise<void> {
         chunks[++numb] = errPart
     }
 
-    for (let chunk of chunks) {
-      try {
-        await bot.telegram.sendMessage(ADMIN_ID, chunk)
-      } catch ({ stack }) {
-        saveLogAsFile(stack)
-      }
-    }
+		for (const chunk of chunks)
+      await bot.telegram.sendMessage(ADMIN_ID, chunk).catch(err => saveLogAsFile(err))
   }
 }
 
@@ -30,7 +25,7 @@ function saveLogAsFile (log: string): void {
   // create a logs directory if it doesn't exist
   !existsSync(logsFolder) && mkdirSync(logsFolder)
   const filename = new Date().toLocaleDateString().replace(/\./g, '-')
-  
+
   appendFileSync(logsFolder + `/${filename}.log`, log)
 }
 
