@@ -1,24 +1,21 @@
 import { Context } from 'telegraf'
 import logger from '@/helpers/logger'
 
-export default (ctx: Context, next: () => any): void => {
-	try {
-		if (
-			ctx.session.states?.buttonClicksCounter
-			&& ++ctx.session.states.buttonClicksCounter < 15
-		) {
-        ctx.session.states.buttonClicksCounterTimeout ||=
-          setTimeout(() => {
-            if (ctx.session.states) {
-              ctx.session.states.buttonClicksCounter = 0
-              ctx.session.states.buttonClicksCounterTimeout = null
-              clearTimeout(ctx.session.states.buttonClicksCounterTimeout)
-            }
-          }, 25000)
-      return next()
-    }
+export default (ctx: Context, next: () => any): void  | Promise<boolean> => {
+  try {
+    if (ctx.session?.states?.buttonClicksCounter === undefined) return next();
 
-    ctx.answerCbQuery(ctx.i18n.t('button_clicks_limitted_msg'), { show_alert: true })
+    if (++ctx.session.states.buttonClicksCounter > 15)
+      return ctx.answerCbQuery(ctx.i18n.t('button_clicks_limitted_msg'), { show_alert: true })
+
+    ctx.session.states.buttonClicksCounterTimeout ||= setTimeout(() => {
+      if (ctx.session.states) {
+        ctx.session.states.buttonClicksCounter = 0
+        ctx.session.states.buttonClicksCounterTimeout = null
+        clearTimeout(ctx.session.states.buttonClicksCounterTimeout)
+      }
+    }, 25000)
+    return next()
 	} catch (err) {
     logger(err)
   }
